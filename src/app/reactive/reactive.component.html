@@ -1,0 +1,59 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="my-4"> Reactive Form Validation</h1>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': f.firstName.touched && f.firstName.errors }" />
+                        <div *ngIf="f.firstName.touched && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.pattern">Only Alphabets are allowed</div>
+                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': f.lastName.touched && f.lastName.errors }" />
+                        <div *ngIf="f.lastName.touched && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                            <div *ngIf="f.lastName.errors.pattern">Only Alphabets are allowed</div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" />
+                        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.pattern">Enter the valid email <address></address></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number</label>
+                        <input type="text" formControlName="mobilenumber" class="form-control" [ngClass]="{ 'is-invalid': f.mobilenumber.touched && f.mobilenumber.errors }" />
+                        <div *ngIf="f.mobilenumber.touched && f.mobilenumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobilenumber.errors.required">Mobile Number  is required</div>
+                            <div *ngIf="f.mobilenumber.errors.pattern">Enter valid Mobile Number</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" max="{{date}}" formControlName="date" 
+                        [ngClass]="{ 'is-invalid': f.date.touched && f.date.errors }">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        
+                      </mat-form-field>
+                     
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+                    </div>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+
+
